@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head th:replace="includes/head::headtag">
+	</head >
+	<body>
+		<div th:replace="includes/nav::navbar"></div >
+		
+		<div class="main">
+		    <div class="wrap">
+		 		<div class="pages">
+		 			<div>
+		 				<!-- <div class="btn1"><a th:href="@{'/index?page=' + ${oldPage}}" style="float:none">Back</a></div> -->
+		 				<div class="btn1"><a th:href="@{${previousUrl}}" style="float:none">Back</a></div>
+		 			</div>
+		 			<div>
+		 				<h1 class="blog-title2" th:text="${blog.title}"></h1  >
+		 			</div>
+		 			<div class="image-container" style="height:auto">
+		 	   			<img th:src="${blog.photo}" alt=""/>
+		 			</div>
+		 			<div class="blog-poast-info">
+                        <ul>
+                            <li>
+                                <i class="admin"> </i><a class="admin" href="#"><span> </span> <span th:text="${blog.author.name}"></span > </a>
+                            </li>
+                            <li>
+                                <i class="date"> </i><a class="p-date" href="#"><span> </span><span th:text="${blog.date}"></span > </a>
+                            </li>
+                        </ul>
+                    </div>
+		 	   		<p class="m_10" th:text="${blog.longDescription}"></p>		 	  		
+		 	  		<div class="clear"></div>
+			  	 </div>
+			</div>
+		</div>
+		
+		
+		<!--<div th:replace="includes/footer::footer-1"></div >-->
+		<div th:replace="includes/footer::footer-2"></div >
+	
+	</body>
+</html>

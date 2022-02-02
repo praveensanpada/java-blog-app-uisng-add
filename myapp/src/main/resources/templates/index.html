@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head th:replace="includes/head::headtag">
+	</head >
+	<body>
+		<div th:replace="includes/nav::navbar"></div >
+		
+		<div class="main">
+            <div class="wrap">
+	            <div class="pages">
+		            <div class="block blog-top">
+	                    <div class="card col_1_of_b span_1_of_b" th:each="blog : ${blogs}">
+	                        <h3><a th:text="${blog.title}"></a></h3>
+	                        <div class="image-container">
+	                        	<img th:src="${blog.photo}" alt="" />
+	                        </div>
+	                        
+	                        <div class="blog-poast-info">
+	                            <ul>
+	                                <li>
+	                                    <i class="admin"> </i><a class="admin" ><span> </span> <span th:text="${blog.author.name}"></span > </a>
+	                                </li>
+	                                <li>
+	                                    <i class="date"> </i><a class="p-date"><span> </span><span th:text="${blog.date}"></span > </a>
+	                                </li>
+	                            </ul>
+	                        </div>
+	                        <p th:text="${blog.shortDescription}" ></p >
+	                        <div class="button"><a th:href="'blog/' + ${blog.id} + '?page=' + ${currentPage}">Read More</a></div>
+	                    </div>
+	                   
+		            </div>
+	            	<div class="center">
+						<div class="pagination">
+							  <a th:href="@{'index?page=' + ${currentPage>totalPage?totalPage:currentPage-1}}" th:if="${#strings.equals(hasPrevious,'true')}">&laquo;</a>
+							  <a th:each="i : ${#numbers.sequence(1,totalPage)}" th:href="@{'index?page=' + ${i}}" th:classappend="${currentPage == i ?'active':''	}" th:text="${i}"></a >
+							  <a th:href="@{'index?page=' + ${currentPage+1}}" th:if="${#strings.equals(hasNext,'true')}"}>&raquo;</a>
+						</div>
+					</div>
+	            </div>
+            </div>
+        </div>
+		
+		
+		<!--<div th:replace="includes/footer::footer-1"></div >-->
+		<div th:replace="includes/footer::footer-2"></div >
+	
+	</body>
+</html>

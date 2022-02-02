@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="includes/head::headtag">
+	</head >
+	<body>
+		<div th:replace="includes/nav::navbar"></div >
+		
+		<div class="main">
+            <div class="wrap">
+	            <div class="contact">
+                    <div class="m_contact"><span class="left_line1"> </span>Register<span class="right_line1"> </span></div>
+                    <p class="m_12">Register as author and bring your thoughts on Internet!</p>
+                    <div class="contatct-top">
+                        <form method="post" th:action="@{/author/register}" th:object="${author}">
+                            <div>
+                                <input type="text" name="email" class="text" th:field="*{email}" placeholder="Enter email"/>
+                                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:red"></div>
+                            </div>
+                            <div>
+                                <input type="password" name="password" class="text" placeholder="Enter password"/>
+                                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:red"></div>
+                            </div>
+                            <div>
+                                <input type="text" name="name" class="text" th:field="*{name}" placeholder="Enter name"/>
+                                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red"></div>
+                            </div>
+                            <div>
+                                <p style="color:red" th:if="${param.error}")>Something went wrong!</p>                                
+                            </div>
+                            <div>
+                                <input type="submit" value="Register" />
+                            </div>
+                            <div>
+								<h3>Already have an account? <a href="author/login">Login</a></h3>
+							</div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		
+		<!--<div th:replace="includes/footer::footer-1"></div >-->
+		<div th:replace="includes/footer::footer-2"></div >
+	
+	</body>
+</html>

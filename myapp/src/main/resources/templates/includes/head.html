@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head th:fragment="headtag">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<base href="http://localhost:8080/">
+	<link th:href="@{css/style.css}" rel="stylesheet" type="text/css" media="all" />
+	<link th:href="@{css/paginate.css}" rel="stylesheet" type="text/css" media="all" />
+	<link href='http://fonts.googleapis.com/css?family=Lato:400,300,600,700,800' rel='stylesheet' type='text/css'>
+	<script th:src="@{js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{js/jquery.lightbox.js}"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{css/lightbox.css}" media="screen" />
+	<script type="text/javascript">
+	    $(function() {
+	        $('.gallery a').lightBox();
+	    });
+	</script>
+</head >
+<body></body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="includes/head::headtag">
+	</head >
+	<body>
+		<div th:replace="includes/nav::navbar"></div >
+		
+		<div class="main">
+            <div class="wrap">
+	            <div class="contact">
+                    <div class="m_contact"><span class="left_line1"> </span>Welcome<span class="right_line1"> </span></div>
+                    <p class="m_12" sec:authentication="principal.authorName"></p>
+					<div>
+                        <p class="m_12" style="color:red" th:text="${#session.getAttribute('error')}">Something went wrong!</p>
+                    </div>
+                    <div>
+                        <p class="m_12" style="color:green" th:text="${#session.getAttribute('message')}">Something went wrong!</p>
+                    </div>
+                    <div class="block blog-top">
+	                    <div class="card col_1_of_b span_1_of_b" th:each="blog : ${blogs}">
+	                        <h3><a th:text="${blog.title}"></a></h3>
+	                        <div class="image-container">
+	                        	<img th:src="${blog.photo}" alt="" />
+	                        </div>
+	                        
+	                        <div class="blog-poast-info">
+	                            <ul>
+	                                <li>
+	                                    <i class="admin"> </i><a class="admin" ><span> </span> <span th:text="${blog.author.name}"></span > </a>
+	                                </li>
+	                                <li>
+	                                    <i class="date"> </i><a class="p-date"><span> </span><span th:text="${blog.date}"></span > </a>
+	                                </li>
+	                            </ul>
+	                        </div>
+	                        <p th:text="${blog.shortDescription}" ></p >
+	                        <div class="button"><a th:href="'blog/' + ${blog.id}">Read More</a></div>
+	                        
+	                        <div class="button"><a th:href="'/author/edit-blog/' + ${blog.id}">Edit Blog</a></div>
+	                        <div class="button" th:attr="data-id=${blog.id}" th:onclick="|deleteBlogHandler(this)|"><a>Delete Blog</a></div>
+	                    </div>
+	                   
+		            </div>
+                </div>
+            </div>
+        </div>
+		<form method="post" th:action="@{/author/delete-blog}" name="deleteBlog">
+			<input type="hidden" name="blogId"/>
+		</form>
+		
+		<!--<div th:replace="includes/footer::footer-1"></div >-->
+		<div th:replace="includes/footer::footer-2"></div >
+		<script>
+			function deleteBlogHandler(ele){
+				if(confirm("Are you sure you want to delete this blog?")){
+					let form = document.forms["deleteBlog"];
+					form["blogId"].value = ele.dataset.id; 
+					console.log(form);
+					form.submit();
+				}
+			}
+		</script>
+	</body>
+</html>

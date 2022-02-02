@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+	<div class="wrap" th:fragment="navbar">
+	    <div class="pages-top">
+	        <div class="blog-title">
+	            <a th:classappend="${#lists.contains({'/', '/index'}, #httpServletRequest.getRequestURI()) ? 'active':''}" href="/">Home</a>
+	            <a sec:authorize="!isAuthenticated()" th:classappend="${#lists.contains({'/author/login', '/author/register'}, #httpServletRequest.getRequestURI()) ? 'active':''}" href="/author/dashboard">Author</a>
+	            <a sec:authorize="isAuthenticated()" th:classappend="${#lists.contains({'/author/dashboard'}, #httpServletRequest.getRequestURI()) ? 'active':''}" href="/author/dashboard">Your blogs</a>
+	            <a sec:authorize="isAuthenticated()" th:classappend="${#lists.contains({'/author/add-blog'}, #httpServletRequest.getRequestURI()) ? 'active':''}" href="/author/add-blog">Add Blog</a>
+	            <a sec:authorize="isAuthenticated()" href="author/logout">Logout</a>
+	        </div>
+	        <!-- end h_menu4 -->
+	        <div class="clear"></div>
+	    </div>
+	    <!-- end header_main4 -->
+	</div>
+</body>
+</html>

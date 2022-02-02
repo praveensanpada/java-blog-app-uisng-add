@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="includes/head::headtag">
+	</head >
+	<body>
+		<div th:replace="includes/nav::navbar"></div >
+		
+		<div class="main">
+            <div class="wrap">
+	            <div class="contact">
+                    <div class="m_contact"><span class="left_line1"> </span>Add blog<span class="right_line1"> </span></div>
+                    <p class="m_12">Bring your thoughts on Internet!</p>
+                    <div class="contatct-top">
+                        <form method="post" th:action="@{/author/add-blog}" th:object="${blog}">
+                            <div>
+                                <input type="text" name="title" class="text" th:field="*{title}" placeholder="Enter title"/>
+                                <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color:red"></div>
+                            </div>
+                            <div>
+                                <input type="text" name="photo" class="text" th:field="*{photo}" placeholder="Enter photo url"/>
+                                <div th:if="${#fields.hasErrors('photo')}" th:errors="*{photo}" style="color:red"></div>
+                            </div>
+                            <div>
+                                <input type="text" name="shortDescription" th:field="*{shortDescription}" class="text" placeholder="Enter short description" />
+                                <div th:if="${#fields.hasErrors('shortDescription')}" th:errors="*{shortDescription}" style="color:red"></div>
+                            </div>
+                            
+                            <div class="text">
+                                <textarea class="text" name="longDescription" th:field="*{longDescription}" rows="6" placeholder="Enter long description"></textarea>
+                                <div th:if="${#fields.hasErrors('longDescription')}" th:errors="*{longDescription}" style="color:red"></div>
+                            </div>
+                            <div>
+                                <p style="color:red" th:text="${#session.getAttribute('error')}">Something went wrong!</p>
+                            </div>
+                            <div>
+                                <input type="submit" value="Add" />
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		
+		<!--<div th:replace="includes/footer::footer-1"></div >-->
+		<div th:replace="includes/footer::footer-2"></div >
+	
+	</body>
+</html>

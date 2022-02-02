@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="includes/head::headtag">
+	</head >
+	<body>
+		<div th:replace="includes/nav::navbar"></div >
+		
+		<div class="main">
+            <div class="wrap">
+	            <div class="contact">
+                    <div class="m_contact"><span class="left_line1"> </span>Login<span class="right_line1"> </span></div>
+                    <p class="m_12">Login as author and bring your thoughts on Internet!</p>
+                    <div class="contatct-top">
+                        <form method="post" th:action="@{/author/doLogin}">
+                            <div>
+                                <input type="email" name="email" class="text" placeholder="Enter email"/>
+                            </div>
+                            <div>
+                                <input type="password" name="password" class="text" placeholder="Enter password"/>
+                            </div>
+                            <div>
+                                <p style="color:red" th:if="${param.error}")>Wrong email or password!</p>
+                                
+                            </div>
+                            <div>
+                                <input type="submit" value="Login" />
+                            </div>
+                            <div>
+								<h3>Don't have an account? <a href="author/register">Register</a></h3>
+							</div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		
+		<!--<div th:replace="includes/footer::footer-1"></div >-->
+		<div th:replace="includes/footer::footer-2"></div >
+	
+	</body>
+</html>
